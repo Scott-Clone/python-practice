@@ -65,6 +65,15 @@ def test_sort_dict_alphabetically():
     }
     assert actual == expected
 
-
+def likes(names):
+    #your code here
+    n = len(names)
+    return {
+    0: "no one likes this",
+    1: "{} likes this",
+    2: "{} and {} like this",
+    3: "{}, {} and {} like this",
+    4: "{}, {} and {number_x} others like this",
+    }[min(4, n)].format(*names[:number_x], x =(n - 2))
 
 
