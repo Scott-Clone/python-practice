@@ -46,6 +46,22 @@ class SLinkedList:
             lastval = lastval.next
         lastval.next = newnode
 
+    def value_at(self, index):
+        findn = self.head
+        if findn is None:
+            print("List has no itmes")
+        count = 0
+        while count != index:
+            count += 1
+            findn = findn.next
+        return findn.data
+
+    def pop_front(self):
+        if self.head is None:
+            return
+        front = self.head
+        self.head = front.next
+        return front.data       
 
 if __name__ == '__main__':
     ll = SLinkedList()
@@ -60,3 +76,7 @@ if __name__ == '__main__':
     ll.list_print()
     print("Size of list is :", ll.size())
     print("List is empty:", ll.empty())
+    print(ll.value_at(3))
+
+    print(ll.pop_front())
+    ll.list_print()
