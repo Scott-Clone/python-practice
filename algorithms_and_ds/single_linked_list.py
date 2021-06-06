@@ -46,6 +46,7 @@ class SLinkedList:
             lastval = lastval.next
         lastval.next = newnode
 
+    # Returns value at a given index 
     def value_at(self, index):
         findn = self.head
         if findn is None:
@@ -56,6 +57,7 @@ class SLinkedList:
             findn = findn.next
         return findn.data
 
+    # Pops and returns front value 
     def pop_front(self):
         if self.head is None:
             return
@@ -76,6 +78,28 @@ class SLinkedList:
             findval = findval.next
             i += 1
         return findval.data
+    
+    # Remove node for a given data
+    def remove_node(self, given_data):
+        
+        temp = self.head
+        
+        if temp is not None:
+            if temp.data == given_data:
+                self.head = temp.next
+                temp = None
+                return
+            
+        while(temp is not None):
+            if temp.data == given_data:
+                break
+            prev = temp
+            temp = temp.next
+             
+        if(temp == None):
+            return
+        prev.next = temp.next
+        temp = None 
 
 if __name__ == '__main__':
     ll = SLinkedList()
