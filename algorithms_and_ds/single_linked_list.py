@@ -116,6 +116,30 @@ class SLinkedList:
         prev.next = temp.next
         temp = None 
 
+    # insert value at index, so current item at that index is pointed to by new item at index
+
+    def insert(self, index, value):
+
+        count = 0
+        temp = self.head
+        newnode = Node(value)
+        
+        # if index is zero use previous push front function
+        if index == 0:
+            self.push_front(value)
+
+        if index != 0:
+            # if index out of range return list as is
+            if index > self.size():
+               return  
+            else:
+                while count != index:
+                    prev = temp
+                    temp = temp.next
+                    count += 1
+                prev.next = newnode
+                newnode.next = temp
+
 if __name__ == '__main__':
     ll = SLinkedList()
     ll.head = Node(2)
@@ -129,11 +153,13 @@ if __name__ == '__main__':
     ll.list_print()
     print("Size of list is :", ll.size())
     print("List is empty:", ll.empty())
-    print(ll.value_at(3))
+    #print(ll.value_at(3))
 
-    print(ll.pop_front())
+    #print(ll.pop_front())
     ll.list_print()
-    print(ll.front())
-    print(ll.back())
-    print(ll.pop_back())
+    #print(ll.front())
+    #print(ll.back())
+    #print(ll.pop_back())
+    ll.insert(10, 3000)
+    ll.list_print()
 
