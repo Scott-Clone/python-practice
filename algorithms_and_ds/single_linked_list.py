@@ -94,28 +94,6 @@ class SLinkedList:
             i += 1
         return findval.data
     
-    # Remove node for a given data
-    def remove_node(self, given_data):
-        
-        temp = self.head
-        
-        if temp is not None:
-            if temp.data == given_data:
-                self.head = temp.next
-                temp = None
-                return
-            
-        while(temp is not None):
-            if temp.data == given_data:
-                break
-            prev = temp
-            temp = temp.next
-             
-        if(temp == None):
-            return
-        prev.next = temp.next
-        temp = None 
-
     # insert value at index, so current item at that index is pointed to by new item at index
 
     def insert(self, index, value):
@@ -139,6 +117,28 @@ class SLinkedList:
                     count += 1
                 prev.next = newnode
                 newnode.next = temp
+    
+    def erase(self, index):
+        
+        count = 0
+        curr_n = self.head
+        
+        if curr_n is None:
+            return
+        
+        if index == 0:
+            self.pop_front()
+        
+        elif index >= self.size():
+            return
+        else:
+            while count != index:
+                prev_n = curr_n
+                curr_n = prev_n.next
+                next_n = curr_n.next
+                count += 1
+
+            prev_n.next = next_n
 
 if __name__ == '__main__':
     ll = SLinkedList()
@@ -161,5 +161,7 @@ if __name__ == '__main__':
     #print(ll.back())
     #print(ll.pop_back())
     ll.insert(10, 3000)
+    ll.list_print()
+    ll.erase(2)
     ll.list_print()
 
