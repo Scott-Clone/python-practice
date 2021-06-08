@@ -65,6 +65,21 @@ class SLinkedList:
         self.head = front.next
         return front.data  
     
+    # Pops and returns back value
+    def pop_back(self):
+
+        temp = self.head
+        if (temp == None):
+            return
+
+        if temp is not None:
+            while temp.next is not None:
+                prev = temp
+                temp = temp.next
+                poped = temp
+            prev.next = None
+        return poped.data
+
     # Return front item
     def front(self):
         return self.head.data
@@ -120,3 +135,5 @@ if __name__ == '__main__':
     ll.list_print()
     print(ll.front())
     print(ll.back())
+    print(ll.pop_back())
+
