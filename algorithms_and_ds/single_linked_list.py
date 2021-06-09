@@ -140,6 +140,21 @@ class SLinkedList:
 
             prev_n.next = next_n
 
+    # returns the value of the node at nth position from the end of the list
+    def value_n_from_end(self, n):
+
+        temp = self.head
+        # use size to get how far n is from the front
+        m =  self.size() - n 
+
+        for i in range(0, m - 1):
+                temp = temp.next
+                i -= 1
+        return temp.data
+      
+            
+        
+
 if __name__ == '__main__':
     ll = SLinkedList()
     ll.head = Node(2)
@@ -163,5 +178,7 @@ if __name__ == '__main__':
     ll.insert(10, 3000)
     ll.list_print()
     ll.erase(2)
+    print("pretty")
     ll.list_print()
-
+    print("pretty")
+    print(ll.value_n_from_end(2))
