@@ -94,27 +94,66 @@ class SLinkedList:
             i += 1
         return findval.data
     
-    # Remove node for a given data
-    def remove_node(self, given_data):
-        
+    # insert value at index, so current item at that index is pointed to by new item at index
+
+    def insert(self, index, value):
+
+        count = 0
         temp = self.head
+        newnode = Node(value)
         
-        if temp is not None:
-            if temp.data == given_data:
-                self.head = temp.next
-                temp = None
-                return
-            
-        while(temp is not None):
-            if temp.data == given_data:
-                break
-            prev = temp
-            temp = temp.next
-             
-        if(temp == None):
+        # if index is zero use previous push front function
+        if index == 0:
+            self.push_front(value)
+
+        if index != 0:
+            # if index out of range return list as is
+            if index > self.size():
+               return  
+            else:
+                while count != index:
+                    prev = temp
+                    temp = temp.next
+                    count += 1
+                prev.next = newnode
+                newnode.next = temp
+    
+    def erase(self, index):
+        
+        count = 0
+        curr_n = self.head
+        
+        if curr_n is None:
             return
-        prev.next = temp.next
-        temp = None 
+        
+        if index == 0:
+            self.pop_front()
+        
+        elif index >= self.size():
+            return
+        else:
+            while count != index:
+                prev_n = curr_n
+                curr_n = prev_n.next
+                next_n = curr_n.next
+                count += 1
+
+            prev_n.next = next_n
+
+    # returns the value of the node at nth position from the end of the list
+    def value_n_from_end(self, n):
+
+        temp = self.head
+        # use size to get how far n is from the front
+        m =  self.size() - n 
+
+        for i in range(0, m - 1):
+                temp = temp.next
+                i -= 1
+        return temp.data
+      
+            
+        
 
 if __name__ == '__main__':
     ll = SLinkedList()
@@ -129,11 +168,17 @@ if __name__ == '__main__':
     ll.list_print()
     print("Size of list is :", ll.size())
     print("List is empty:", ll.empty())
-    print(ll.value_at(3))
+    #print(ll.value_at(3))
 
-    print(ll.pop_front())
+    #print(ll.pop_front())
     ll.list_print()
-    print(ll.front())
-    print(ll.back())
-    print(ll.pop_back())
-
+    #print(ll.front())
+    #print(ll.back())
+    #print(ll.pop_back())
+    ll.insert(10, 3000)
+    ll.list_print()
+    ll.erase(2)
+    print("pretty")
+    ll.list_print()
+    print("pretty")
+    print(ll.value_n_from_end(2))
