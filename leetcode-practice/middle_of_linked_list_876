@@ -1,0 +1,23 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+'''
+This problem can be solved by using two pointers:
+"fast" traverses the list twice as fast as "slow".
+When the fast pointer has finished traversing the list 
+the slow pointer will be in the middle of the list
+'''
+class Solution:
+    def middleNode(self, head: ListNode) -> ListNode:
+        
+        fast = head 
+        slow = head
+        
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+            
+        return slow
