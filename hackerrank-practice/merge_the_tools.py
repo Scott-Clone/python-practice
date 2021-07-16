@@ -1,5 +1,4 @@
 def merge_the_tools(string, k):
-    # your code goes here
     x = [list(dict.fromkeys(string[i:i+k])) for i in range(0, len(string), k)]
     
     for i in x:
