@@ -1,5 +1,3 @@
 import cmath
 
-complex_cord = complex(input())
-
-print(*cmath.polar(complex_cord), sep = '\n')
+print(*cmath.polar(complex(input())), sep = '\n')
